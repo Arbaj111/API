@@ -22,7 +22,13 @@ function Header() {
                 About
             </NavLink>
         </li>
-
+        <li className=''>
+            <NavLink 
+            to="Service"
+            className='mx-4'>
+                Service
+            </NavLink>
+        </li>
         
       </ul>
      </div>
