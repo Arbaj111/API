@@ -18,6 +18,10 @@ function App() {
       element: <Layout/>,
       children: [
         {
+          path: "Service",
+          element: <Service/>
+        },
+        {
           path: "",
           element: <Home/>
         },
