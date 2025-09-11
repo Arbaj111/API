@@ -1,34 +1,59 @@
 import React, { useState } from 'react'
 
 function Home() {
-  const [data, setData] = useState(null)
 
-  const api = "http://api.weatherapi.com/v1/current.json?key=1a89446531354e12af7173117251009&q=London&aqi=no"
-  // const api_api = "https://api.weatherapi.com/v1/current.json?key=1a89446531354e12af7173117251009&q=delhi&aqi=yes"
+  const [resdata, setResData] = useState({});
+  const url = 'https://api.freeapi.app/api/v1/public/randomusers/user/random';
+  const options = {method: 'GET', headers: {accept: 'application/json'}};
 
-   const FetchData = async() => {
-    const res = await fetch(api)
-    
-    const resdata = res.json() 
+  const FetchData = async() => {
 
-    setData(resdata)
+     try {
+      const res = await fetch(url, options)
+      const result = await res.json();
+      setResData(result.data)
+ 
+      console.log(resdata);
+      
+     } catch (error) {
+      
+     }
 
-    console.log("data ==== ", resdata.value.location);
   }
+  
+
 
   return (
-    <div className='bg-black h-screen w-full text-gray-300'>
-      
-      <div className='bg-gray-500 max-h-screen  text-white mx-32 p-10 rounded-4xl'>
-               {data?.location?.name}
-      </div>
+    <div>
 
-          <button
-          className=''
-          onClick={FetchData}
-          >
-            getdata
-          </button>
+        <div className='max-h-screen bg-amber-600 text-black'>
+
+
+            <h1>gender: {resdata?.gender}</h1>
+            <h1>name: {resdata?.name?.title}   {resdata?.name?.first}   {resdata?.name?.last}</h1>
+          
+            <h1>gender: {resdata?.gender}</h1>
+            <h1>name: {resdata?.location?.street?.number}   {resdata?.location?.street?.name}   {resdata?.name?.last}</h1>
+
+            
+        </div>
+
+
+
+
+
+
+        <button 
+        
+        className=' border-red-200 border-4 hover:bg-amber-950'
+        onClick={FetchData}
+        
+        >
+
+          fetch data
+
+
+        </button>
     </div>
   )
 }
